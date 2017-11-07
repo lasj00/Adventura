@@ -1,5 +1,10 @@
 package logika;
 
+import java.util.ArrayList;
+import java.util.List;
+import utils.Observer;
+import utils.Subject;
+
 
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
@@ -12,11 +17,13 @@ package logika;
  *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Laštůvka (lasj00)
  *@version    02.01.2016
  */
-public class HerniPlan {
+public class HerniPlan implements Subject{
     
     private Prostor aktualniProstor;
     private boolean vyhra = false;
     private boolean oak = false;
+    
+    private List<Observer> listObserveru = new ArrayList<Observer>();
     
      /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -31,20 +38,20 @@ public class HerniPlan {
      */
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-        Prostor mujdum = new Prostor("Domov", "Dům, do kterého jste s mámou se nastěhovali, je zde uklizeno a ve vzduchu je cítít teplo domova");
-        Prostor mesto1 = new Prostor("Pallet_Town","Městečko, do kterého jste se mámou nastěhovali. Malé a velmi klidné městečko obklopené lesem");
-        Prostor laborator = new Prostor("Laboratoř","Moderní laboratoř profesora Oaka, ve které hlouběji zkoumá Pokémony");
-        Prostor jehodum = new Prostor("Dům_rivala","Dům, ve kterém bydlí tvůj rival Garry. Garry se stejně jako ty chce stát Pokémoním mástrem");
-        Prostor route11 = new Prostor("Travnatá_Route1","Zatravněná část Route 1. Je zde vysoká tráva, ve které se ukrývají divocí Pokémoni");
-        Prostor route12 = new Prostor("Prázdná_Route1","Klidná část Route1, je zde klid. Je jen slyšet šumění okolního lesa");
-        Prostor route13 = new Prostor("Zalesněná_Route1","Route 1 se zde mění v malý lesík. Není problém ho projít. Žijí zde divocí Pokémoni, rostou zde maliny a borůvky");
-        Prostor mesto2 = new Prostor("Viridian_City","Velké měste, je zde několik domů, lékárna a samotná Gym. Vládne zde městský ruch a lze zde potkat zajímavé lidi");
-        Prostor dum1 = new Prostor("Dům_starce","V tomto baráku bydlí moudrý stařec");
-        Prostor dum2 = new Prostor("Dům_mladých","Bydlí zde mladá rodina");
-        Prostor dum3 = new Prostor("Dům_Christiana","Bydlí zde Christian, bývalí vítěz Pokémonní ligy");
-        Prostor sklad = new Prostor("Sklad","V tomto skladě jsou zdarma k dispozici Pokébally pro nové trenéry");
-        Prostor gym = new Prostor("Gym","Gym, ve které je samotná Gym Leader Brock, pokud si myslíš, že ho zvládneš porazit, vyzvi ho k souboji");
-        Prostor lekarna = new Prostor("Lékárna","Je zde k dispozici Potion - lék pro Pokémony");
+        Prostor mujdum = new Prostor("Domov", "Dům, do kterého jste s mámou se nastěhovali, je zde uklizeno a ve vzduchu je cítít teplo domova", 110, 50);
+        Prostor mesto1 = new Prostor("Pallet_Town","Městečko, do kterého jste se mámou nastěhovali. Malé a velmi klidné městečko obklopené lesem", 10, 20);
+        Prostor laborator = new Prostor("Laboratoř","Moderní laboratoř profesora Oaka, ve které hlouběji zkoumá Pokémony", 10, 15);
+        Prostor jehodum = new Prostor("Dům_rivala","Dům, ve kterém bydlí tvůj rival Garry. Garry se stejně jako ty chce stát Pokémoním mástrem", 90, 60);
+        Prostor route11 = new Prostor("Travnatá_Route1","Zatravněná část Route 1. Je zde vysoká tráva, ve které se ukrývají divocí Pokémoni",80, 70);
+        Prostor route12 = new Prostor("Prázdná_Route1","Klidná část Route1, je zde klid. Je jen slyšet šumění okolního lesa", 60,80);
+        Prostor route13 = new Prostor("Zalesněná_Route1","Route 1 se zde mění v malý lesík. Není problém ho projít. Žijí zde divocí Pokémoni, rostou zde maliny a borůvky",70,70);
+        Prostor mesto2 = new Prostor("Viridian_City","Velké měste, je zde několik domů, lékárna a samotná Gym. Vládne zde městský ruch a lze zde potkat zajímavé lidi",20,20);
+        Prostor dum1 = new Prostor("Dům_starce","V tomto baráku bydlí moudrý stařec",20,40);
+        Prostor dum2 = new Prostor("Dům_mladých","Bydlí zde mladá rodina",60,80);
+        Prostor dum3 = new Prostor("Dům_Christiana","Bydlí zde Christian, bývalí vítěz Pokémonní ligy",25,70);
+        Prostor sklad = new Prostor("Sklad","V tomto skladě jsou zdarma k dispozici Pokébally pro nové trenéry",45,60);
+        Prostor gym = new Prostor("Gym","Gym, ve které je samotná Gym Leader Brock, pokud si myslíš, že ho zvládneš porazit, vyzvi ho k souboji",5,5);
+        Prostor lekarna = new Prostor("Lékárna","Je zde k dispozici Potion - lék pro Pokémony",20,20);
         
         // přiřazují se průchody mezi prostory (sousedící prostory)
         mujdum.setVychod(mesto1);
@@ -180,6 +187,7 @@ public class HerniPlan {
      */
     public void setAktualniProstor(Prostor prostor) {
        aktualniProstor = prostor;
+       notifyObservers();
     }
     
     /**
@@ -208,5 +216,23 @@ public class HerniPlan {
      */
     public boolean isOak(){
         return oak;
+    }
+    
+    //abstraktní metody
+    @Override
+    public void registerObserver(Observer observer) {
+        listObserveru.add(observer);    
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        listObserveru.remove(observer);   
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer listObserveruItem : listObserveru) {
+            listObserveruItem.update();
+        }
     }
 }

@@ -48,8 +48,8 @@ public class ProstorTest
      */
     @Test
     public  void testLzeProjit() {		
-        Prostor prostor1 = new Prostor("hala", "vstupní hala budovy VŠE na Jižním městě");
-        Prostor prostor2 = new Prostor("bufet", "bufet, kam si můžete zajít na svačinku");
+        Prostor prostor1 = new Prostor("hala", "vstupní hala budovy VŠE na Jižním městě", 50, 50);
+        Prostor prostor2 = new Prostor("bufet", "bufet, kam si můžete zajít na svačinku", 50, 50);
         prostor1.setVychod(prostor2);
         prostor2.setVychod(prostor1);
         assertEquals(prostor2, prostor1.vratSousedniProstor("bufet"));
@@ -60,7 +60,7 @@ public class ProstorTest
     @Test
     public void testVeci()
     {
-        logika.Prostor prostor1 = new logika.Prostor(null, null);
+        logika.Prostor prostor1 = new logika.Prostor(null, null, 0, 0);
         logika.Vec vec1 = new logika.Vec("a", true);
         logika.Vec vec2 = new logika.Vec("b", false);
         assertEquals(true, prostor1.vlozVec(vec1));
@@ -79,7 +79,7 @@ public class ProstorTest
     {
         Vec vec1 = new Vec("Koláč", true);
         Vec vec2 = new Vec("Stůl", false);
-        Prostor prostor1 = new Prostor("Domov", "Jseš doma");
+        Prostor prostor1 = new Prostor("Domov", "Jseš doma", 50, 50);
         prostor1.vlozVec(vec1);
         prostor1.vlozVec(vec2);
         assertEquals(true, prostor1.obsahujeVec("Koláč"));
@@ -94,7 +94,7 @@ public class ProstorTest
     public void testOdeberVec()
     {
         Vec vec1 = new Vec("Koláč", true);
-        Prostor prostor1 = new Prostor("Domov", "Jseš doma");
+        Prostor prostor1 = new Prostor("Domov", "Jseš doma", 50, 50);
         prostor1.vlozVec(vec1);
         assertEquals(true, prostor1.obsahujeVec("Koláč"));
         prostor1.odeberVec("Koláč");
@@ -109,7 +109,7 @@ public class ProstorTest
     {
         Postava postava1 = new Postava("Máma", "ahoj");
         Postava postava2 = new Postava("Táta","čau");
-        Prostor prostor1 = new Prostor("Domov", "Jseš doma");
+        Prostor prostor1 = new Prostor("Domov", "Jseš doma", 50, 50);
         prostor1.vlozPostavu(postava1);
         prostor1.vlozPostavu(postava2);
         assertEquals(true, prostor1.obsahujePostavu("Máma"));
@@ -125,7 +125,7 @@ public class ProstorTest
     {
         Pokemon pokemon1 = new Pokemon("Pikachu");
         Pokemon pokemon2 = new Pokemon("Weedles");
-        Prostor prostor1 = new Prostor("Louka", "je tu hezky");
+        Prostor prostor1 = new Prostor("Louka", "je tu hezky", 100, 50);
         prostor1.vlozPokemona(pokemon1);
         prostor1.vlozPokemona(pokemon2);
         assertEquals(true, prostor1.obsahujePokemona("Pikachu"));
