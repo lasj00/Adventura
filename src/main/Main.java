@@ -7,6 +7,12 @@ package main;
 
 import GUI.Mapa;
 import GUI.MenuLista;
+import GUI.PanelBatohu;
+import GUI.PanelPokemonu;
+import GUI.PanelVeci;
+import GUI.PanelVychodu;
+import GUI.PanelWild;
+import GUI.PanelPostav;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,13 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -49,7 +50,7 @@ public class Main extends Application {
         
         setHra(new Hra());
         mapa = new Mapa(hra);
-        menuLista = new MenuLista(hra, this);
+        menuLista = new MenuLista(hra, this,stage);
         
         BorderPane borderPane = new BorderPane();
         
@@ -57,7 +58,6 @@ public class Main extends Application {
         centralText = new TextArea();
         getCentralText().setText(hra.vratUvitani());
         getCentralText().setEditable(false);
-        borderPane.setCenter(getCentralText());
         
         //Label s textem zadej prikaz
         Label zadejPrikazLabel = new Label("Zadej prikaz: ");
@@ -84,7 +84,7 @@ public class Main extends Application {
                 
                     
                  }
-                        
+               
                         
                 
             }
@@ -96,13 +96,41 @@ public class Main extends Application {
         dolniLista.setAlignment(Pos.CENTER);
         dolniLista.getChildren().addAll(zadejPrikazLabel, zadejPrikazTextArea);
         
-        borderPane.setLeft(getMapa()); //v levý části panelu vykresli mapu s tečkou
+        BorderPane levy = new BorderPane();
+        PanelBatohu panelBatohu = new PanelBatohu(hra.getHerniPlan(),centralText);
+        PanelPokemonu panelPokemonu = new PanelPokemonu(hra.getHerniPlan());
+        PanelVychodu panelVychodu = new PanelVychodu(hra.getHerniPlan(),centralText,zadejPrikazTextArea);
+        PanelVeci panelVeci = new PanelVeci(hra.getHerniPlan(),centralText);
+        PanelWild panelWild = new PanelWild(hra.getHerniPlan(),centralText);
+        PanelPostav panelPostav = new PanelPostav(hra.getHerniPlan(),centralText);
+        
+        levy.setBottom(getCentralText());
+        levy.setLeft(panelBatohu.getList());
+        levy.setCenter(panelVychodu.getList());
+        levy.setRight(panelVeci.getList());
+        
+        BorderPane pravy = new BorderPane();
+        pravy.setLeft(panelPokemonu.getList());
+        pravy.setCenter(panelWild.getList());
+        pravy.setRight(getMapa());
+        
+        BorderPane centrum = new BorderPane();
+        centrum.setCenter(panelPostav.getList());
+
+        
+        borderPane.setRight(pravy);
+        borderPane.setLeft(levy); 
         borderPane.setBottom(dolniLista);
+        borderPane.setCenter(centrum);
         borderPane.setTop(menuLista);
         
-        Scene scene = new Scene(borderPane, 700, 450);
+ 
+        
+        
+        
+        Scene scene = new Scene(borderPane, 1150, 655);
 
-        primaryStage.setTitle("Adventura");
+        primaryStage.setTitle("Pokémon: Red/Blue Short Text Game");
 
         primaryStage.setScene(scene);
         primaryStage.show();

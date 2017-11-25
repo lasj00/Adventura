@@ -87,6 +87,11 @@ public class Batoh
         return KAPACITA - seznamVeci.size();
     }
     
-    //== Soukromé metody (instancí i třídy) ========================================
+    
+   
+
+    public Map<String, Vec> getSeznamVeci() {
+        return seznamVeci;
+    }
 
 }

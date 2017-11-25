@@ -4,6 +4,8 @@ package logika;
 
 
 
+
+
 /*******************************************************************************
  * Třída PrikazChyt implementuje pro hru příkaz chyt
  * Tato třída je součástí jednoduché textové hry.
@@ -67,6 +69,7 @@ public class PrikazChyt implements IPrikaz
                 ulozisteNaPokemony.ulozPokemonaDoUloziste(chytany);
                 aktualniProstor.odeberPokemona(jmenoChytPokemona);
                 batoh.vyberVecVBatohu("Pokéball");
+                plan.notifyObservers();
                 return "Chytil si " + chytany.getPojmenovani();
                }
                 }
@@ -88,6 +91,8 @@ public class PrikazChyt implements IPrikaz
     public String getNazev() {
         return NAZEV;
     }
+    
+  
     //== Soukromé metody (instancí i třídy) ========================================
 
 }

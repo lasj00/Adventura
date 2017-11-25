@@ -45,7 +45,7 @@ public class PostavaTest
     @Test
     public void testPostava()
     {
-        Postava postava1 = new Postava("Máma", "ahoj");
+        Postava postava1 = new Postava("Máma", "ahoj","mama.png");
         assertEquals("Máma", postava1.getJmeno());
         assertEquals("ahoj", postava1.getMluvu());
     }

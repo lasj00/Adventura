@@ -17,6 +17,7 @@ public class Postava
     //== Datové atributy (statické i instancí)======================================
     private String jmeno;
     private String mluva;
+    private String obrazek;
     //== Konstruktory a tovární metody =============================================
 
     /***************************************************************************
@@ -24,10 +25,11 @@ public class Postava
      *  
      *  Postava má jméno a hráči sděluje informace (mluva)
      */
-    public Postava(String jmeno, String mluva)
+    public Postava(String jmeno, String mluva, String obrazek)
     {
         this.jmeno = jmeno;
         this.mluva = mluva;
+        this.obrazek = obrazek;
     }
     
 
@@ -52,5 +54,9 @@ public class Postava
     
 
     //== Soukromé metody (instancí i třídy) ========================================
+    
+    public String getObrazek() {
+        return obrazek;
+    }
 
 }

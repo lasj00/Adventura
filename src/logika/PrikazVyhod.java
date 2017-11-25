@@ -63,6 +63,7 @@ public class PrikazVyhod implements IPrikaz
             else{
                 // pokud je věc smazána z batohu, přesune se do aktualního prostoru
                 aktualniProstor.vlozVec(mazana);
+                plan.notifyObservers();
                 return "Vyhodil jsi " + jmenoMazaneVeci;
             }
         }

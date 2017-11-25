@@ -239,7 +239,7 @@ public class Prostor {
      */
     public void vlozPostavu(Postava postava)
     {
-        postavy.put(postava.getJmeno(), postava);
+        getPostavy().put(postava.getJmeno(), postava);
     }
     
     /**
@@ -249,7 +249,7 @@ public class Prostor {
      */
     public Postava najdiPostavu(String jmeno)
      {
-        return postavy.get(jmeno);
+        return getPostavy().get(jmeno);
      }
     
     /**
@@ -260,12 +260,12 @@ public class Prostor {
      */
      private String popisPostavy(){
         String popisPostavy = "";
-        if(postavy.isEmpty()){
+        if(getPostavy().isEmpty()){
             popisPostavy = "Nikdo tu není.";
         }
         else{
             popisPostavy = "A stojí tu: ";
-            for(String nazev : postavy.keySet()){
+            for(String nazev : getPostavy().keySet()){
                 popisPostavy += nazev + " ";
             }
         }
@@ -280,7 +280,7 @@ public class Prostor {
      *  @return true, když tam postava je a false, když tam postava není
      */
     public boolean obsahujePostavu (String jmenoPostavy) {
-        return postavy.containsKey(jmenoPostavy);
+        return getPostavy().containsKey(jmenoPostavy);
     }
     
     /**
@@ -342,6 +342,16 @@ public class Prostor {
     public boolean obsahujePokemona (String jmenoPokemona) {
         return pokemoni.containsKey(jmenoPokemona);
     }
+    
+    public String seznamVychodu() 
+    {
+        String vracenyText = "vychody:";
+        for (Prostor sousedni : vychody) {
+             vracenyText += " " + sousedni.getNazev();
+        }
+        return vracenyText;
+    }
+    
 
     /**
      * @return the posLeft
@@ -356,6 +366,24 @@ public class Prostor {
     public double getPosTop() {
         return posTop;
     }
+
+    public Map<String, Vec> getVeci() {
+        return veci;
+    }
+
+    public Map<String, Pokemon> getPokemony() {
+         return pokemoni;
+    }
+
+    /**
+     * @return the postavy
+     */
+    public Map<String, Postava> getPostavy() {
+        return postavy;
+    }
+    
+  
+    
 }
 
 

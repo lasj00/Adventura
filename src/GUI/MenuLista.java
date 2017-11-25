@@ -29,10 +29,12 @@ public class MenuLista extends MenuBar{
     
     private IHra hra;
     private Main main;
+    private Stage stage;
     
-    public MenuLista(IHra hra, Main main){
+    public MenuLista(IHra hra, Main main,Stage stage){
         this.hra = hra;
         this.main = main;
+        this.stage = stage;
         init();
     }
     
@@ -68,11 +70,9 @@ public class MenuLista extends MenuBar{
         novaHra.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
-            public void handle(ActionEvent event){
-                hra = new Hra();
-                main.getMapa().newGame(hra);
-                main.setHra(hra);
-                main.getCentralText().setText(hra.vratUvitani());
+            public void handle(ActionEvent event)
+            {
+                main.start(stage);
             }
         });
         
@@ -83,8 +83,8 @@ public class MenuLista extends MenuBar{
                 Alert oProgramuAlert = new Alert(Alert.AlertType.INFORMATION);
                 
                 oProgramuAlert.setTitle("O programu");
-                oProgramuAlert.setHeaderText("Super adventura QWX");
-                oProgramuAlert.setContentText("Loren ipsum");
+                oProgramuAlert.setHeaderText("Pokémon: The Text Game Adventure");
+                oProgramuAlert.setContentText("Textová hra pro splnění kurzu 4IT115");
                 oProgramuAlert.initOwner(main.getStage());
                 
                 oProgramuAlert.showAndWait();

@@ -65,6 +65,12 @@ public class UlozisteNaPokemony
     public int getPocetPokemonu(){
         return seznamPokemonu.size();
     }
+    
+    
     //== Soukromé metody (instancí i třídy) ========================================
+
+    public Map<String, Pokemon> getSeznamPokemonu() {
+        return seznamPokemonu;
+    }
 
 }

@@ -16,6 +16,7 @@ public class Pokemon
 {
     //== Datové atributy (statické i instancí)======================================
     private String pojmenovani;
+    private String obrazek;
     
     //== Konstruktory a tovární metody =============================================
 
@@ -24,9 +25,10 @@ public class Pokemon
      *  
      *  Pokémon má pojmenování
      */
-    public Pokemon(String pojmenovani)
+    public Pokemon(String pojmenovani,String obrazek)
     {
         this.pojmenovani = pojmenovani;
+        this.obrazek = obrazek;
     }
 
     //== Nesoukromé metody (instancí i třídy) ======================================
@@ -38,7 +40,13 @@ public class Pokemon
     public String getPojmenovani() {
         return pojmenovani; 
     }
+    
+    
 
     //== Soukromé metody (instancí i třídy) ========================================
+
+    public String getObrazek() {
+        return obrazek;
+    }
 
 }

@@ -4,6 +4,11 @@ package logika;
 
 
 
+
+
+
+
+
 /*******************************************************************************
  * Třída PrikazSeber implementuje pro hru příkaz seber.
  * Tato třída je součástí jednoduché textové hry.
@@ -16,6 +21,8 @@ public class PrikazSeber implements IPrikaz
    private static final String NAZEV = "seber";
    private HerniPlan plan;
    private Batoh batoh;
+
+
     
     /**
     *  Konstruktor třídy
@@ -26,6 +33,7 @@ public class PrikazSeber implements IPrikaz
     public PrikazSeber(HerniPlan plan, Batoh batoh) {
         this.plan = plan;
         this.batoh = batoh;
+       
     }
 
     /**
@@ -69,7 +77,8 @@ public class PrikazSeber implements IPrikaz
             if(batoh.vlozVecDoBatohu(sbirana) == true){
                     //věc se dá sebrat a v batohu je místo
                     batoh.vlozVecDoBatohu(sbirana);
-                    return "Sebral si " + sbirana.getNazev() + "a do bahotu se ti vejde ještě " +  batoh.getPocetVeciJeste() + " věc/i";
+                    plan.notifyObservers();
+                    return "Sebral si " + sbirana.getNazev() + "a do bahotu se ti vejde ještě " +  batoh.getPocetVeciJeste() + " věc/i"; 
             }
          }
         else{
@@ -84,7 +93,7 @@ public class PrikazSeber implements IPrikaz
       }
      }
     }
-    
+   
     /**
      *  Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
      *  
@@ -94,4 +103,7 @@ public class PrikazSeber implements IPrikaz
     public String getNazev() {
         return NAZEV;
     }
+    
+   
+    
 }
