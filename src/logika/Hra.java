@@ -92,7 +92,8 @@ public class Hra implements IHra {
         if (herniPlan.isVyhra()){
             konecHry = true;
             textKVypsani = "Porazil si Gym Leadera Brocka!!! Získáváš Badge!!! VYHRÁL SI!!! \n" +
-                "Toto bylo Pokémon Red/Blue Short Text Game...Vytvořil Jan Laštůvka (lasj00) 2015/2016";
+                "Toto bylo Pokémon Red/Blue Short Text Game...Vytvořil Jan Laštůvka (lasj00) 2015/2016" +
+                "Revize - doplnění grafického rozhraní Jan Laštůvka (lasj00) 2017/2018";
         }
         return textKVypsani;
     }

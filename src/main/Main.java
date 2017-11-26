@@ -31,7 +31,7 @@ import uiText.TextoveRozhrani;
 
 /**
  *
- * @author xzenj02
+ * @author lasj00
  */
 public class Main extends Application {
     
@@ -96,7 +96,8 @@ public class Main extends Application {
         dolniLista.setAlignment(Pos.CENTER);
         dolniLista.getChildren().addAll(zadejPrikazLabel, zadejPrikazTextArea);
         
-        BorderPane levy = new BorderPane();
+        
+        //Border pany
         PanelBatohu panelBatohu = new PanelBatohu(hra.getHerniPlan(),centralText);
         PanelPokemonu panelPokemonu = new PanelPokemonu(hra.getHerniPlan());
         PanelVychodu panelVychodu = new PanelVychodu(hra.getHerniPlan(),centralText,zadejPrikazTextArea);
@@ -104,32 +105,35 @@ public class Main extends Application {
         PanelWild panelWild = new PanelWild(hra.getHerniPlan(),centralText);
         PanelPostav panelPostav = new PanelPostav(hra.getHerniPlan(),centralText);
         
-        levy.setBottom(getCentralText());
-        levy.setLeft(panelBatohu.getList());
-        levy.setCenter(panelVychodu.getList());
-        levy.setRight(panelVeci.getList());
+        BorderPane cely = new BorderPane();
         
         BorderPane pravy = new BorderPane();
+        pravy.setCenter(panelPostav.getList());
+        pravy.setRight(panelWild.getList());
         pravy.setLeft(panelPokemonu.getList());
-        pravy.setCenter(panelWild.getList());
-        pravy.setRight(getMapa());
         
-        BorderPane centrum = new BorderPane();
-        centrum.setCenter(panelPostav.getList());
-
+        BorderPane levy = new BorderPane();
+        levy.setRight(panelVeci.getList());
+        levy.setCenter(panelVychodu.getList());
+        levy.setLeft(panelBatohu.getList());
         
-        borderPane.setRight(pravy);
-        borderPane.setLeft(levy); 
+        cely.setLeft(levy);
+        cely.setRight(pravy);
+        cely.setBottom(getCentralText());
+        
+        
+        borderPane.setRight(getMapa());
+        borderPane.setLeft(cely); 
         borderPane.setBottom(dolniLista);
-        borderPane.setCenter(centrum);
         borderPane.setTop(menuLista);
         
  
         
         
+        //Celá scéna.
+        Scene scene = new Scene(borderPane, 1000, 655);
         
-        Scene scene = new Scene(borderPane, 1150, 655);
-
+        //Název scény
         primaryStage.setTitle("Pokémon: Red/Blue Short Text Game");
 
         primaryStage.setScene(scene);

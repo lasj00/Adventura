@@ -15,7 +15,10 @@ import logika.HerniPlan;
 import logika.Pokemon;
 import utils.Observer;
 
-
+/**
+ *
+ * @author Jan Laštůvka
+ */
 public class PanelPokemonu implements Observer{
     
     private HerniPlan plan;

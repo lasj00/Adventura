@@ -45,16 +45,16 @@ public class HerniPlan implements Subject{
         Prostor mesto1 = new Prostor("Pallet_Town","Městečko, do kterého jste se mámou nastěhovali. Malé a velmi klidné městečko obklopené lesem", 120, 530);
         Prostor laborator = new Prostor("Laboratoř","Moderní laboratoř profesora Oaka, ve které hlouběji zkoumá Pokémony", 150, 552);
         Prostor jehodum = new Prostor("Dům_rivala","Dům, ve kterém bydlí tvůj rival Garry. Garry se stejně jako ty chce stát Pokémoním mástrem", 150, 515);
-        Prostor route11 = new Prostor("Travnatá_Route1","Zatravněná část Route 1. Je zde vysoká tráva, ve které se ukrývají divocí Pokémoni",250, 300);
-        Prostor route12 = new Prostor("Prázdná_Route1","Klidná část Route1, je zde klid. Je jen slyšet šumění okolního lesa", 250, 250);
-        Prostor route13 = new Prostor("Zalesněná_Route1","Route 1 se zde mění v malý lesík. Není problém ho projít. Žijí zde divocí Pokémoni, rostou zde maliny a borůvky",250, 180);
-        Prostor mesto2 = new Prostor("Viridian_City","Velké měste, je zde několik domů, lékárna a samotná Gym. Vládne zde městský ruch a lze zde potkat zajímavé lidi",250, 100);
-        Prostor dum1 = new Prostor("Dům_starce","V tomto baráku bydlí moudrý stařec",250, 20);
-        Prostor dum2 = new Prostor("Dům_mladých","Bydlí zde mladá rodina",120, 20);
-        Prostor dum3 = new Prostor("Dům_Christiana","Bydlí zde Christian, bývalí vítěz Pokémonní ligy",340, 20);
-        Prostor sklad = new Prostor("Sklad","V tomto skladě jsou zdarma k dispozici Pokébally pro nové trenéry",10, 100);
-        Prostor gym = new Prostor("Gym","Gym, ve které je samotná Gym Leader Brock, pokud si myslíš, že ho zvládneš porazit, vyzvi ho k souboji",460, 130);
-        Prostor lekarna = new Prostor("Lékárna","Je zde k dispozici Potion - lék pro Pokémony",460, 50);
+        Prostor route11 = new Prostor("Travnatá_Route1","Zatravněná část Route 1. Je zde vysoká tráva, ve které se ukrývají divocí Pokémoni",95, 435);
+        Prostor route12 = new Prostor("Prázdná_Route1","Klidná část Route1, je zde klid. Je jen slyšet šumění okolního lesa", 95, 340);
+        Prostor route13 = new Prostor("Zalesněná_Route1","Route 1 se zde mění v malý lesík. Není problém ho projít. Žijí zde divocí Pokémoni, rostou zde maliny a borůvky",150, 280);
+        Prostor mesto2 = new Prostor("Viridian_City","Velké měste, je zde několik domů, lékárna a samotná Gym. Vládne zde městský ruch a lze zde potkat zajímavé lidi",170, 125);
+        Prostor dum1 = new Prostor("Dům_starce","V tomto baráku bydlí moudrý stařec",140, 100);
+        Prostor dum2 = new Prostor("Dům_mladých","Bydlí zde mladá rodina",140, 60);
+        Prostor dum3 = new Prostor("Dům_Christiana","Bydlí zde Christian, bývalí vítěz Pokémonní ligy", 115, 15);
+        Prostor sklad = new Prostor("Sklad","V tomto skladě jsou zdarma k dispozici Pokébally pro nové trenéry",200, 105);
+        Prostor gym = new Prostor("Gym","Gym, ve které je samotná Gym Leader Brock, pokud si myslíš, že ho zvládneš porazit, vyzvi ho k souboji",200, 50);
+        Prostor lekarna = new Prostor("Lékárna","Je zde k dispozici Potion - lék pro Pokémony", 140, 152);
         
         // přiřazují se průchody mezi prostory (sousedící prostory)
         mujdum.setVychod(mesto1);

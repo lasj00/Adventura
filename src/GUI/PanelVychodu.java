@@ -15,7 +15,10 @@ import javafx.scene.input.MouseEvent;
 import logika.HerniPlan;
 import utils.Observer;
 
-
+/**
+ *
+ * @author Jan Laštůvka
+ */
 public class PanelVychodu implements Observer
 {
 
@@ -26,6 +29,9 @@ public class PanelVychodu implements Observer
     private TextArea centralText;
     private TextField zadejPrikazTextArea;
 
+    /*
+    * Konstruktor pro panel východů.
+    */
     public PanelVychodu(HerniPlan plan, TextArea text,TextField field)
       {
         this.plan = plan;
@@ -36,13 +42,16 @@ public class PanelVychodu implements Observer
         
         init();
       }
-
+    
+    /*
+    * Metoda vytvoří list pro východy.
+    */
     private void init()
       {
         list = new ListView<>();
         data = FXCollections.observableArrayList();
         list.setItems(data);
-        list.setPrefWidth(100);
+        list.setPrefWidth(150);
         
         list.setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
@@ -73,11 +82,17 @@ public class PanelVychodu implements Observer
         update();
       }
 
+     /*
+    * Metoda vrací list.
+    */
     public ListView<String> getList()
       {
         return list;
       }
-
+    
+    /*
+    * Metoda aktualizuje list východů. Zobrazuje názvy východů.
+    */
     @Override
     public void update()
       {

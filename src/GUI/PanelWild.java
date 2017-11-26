@@ -9,7 +9,6 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -19,7 +18,10 @@ import logika.HerniPlan;
 import logika.Pokemon;
 import utils.Observer;
 
-
+/**
+ *
+ * @author Jan Laštůvka
+ */
 public class PanelWild implements Observer{
     
     private HerniPlan plan;
@@ -45,7 +47,7 @@ public class PanelWild implements Observer{
         list = new ListView<>();
         data = FXCollections.observableArrayList();
         list.setItems(data);
-        list.setPrefWidth(120);
+        list.setPrefWidth(130);
         
         list.setOnMouseClicked(new EventHandler<MouseEvent>() 
         {

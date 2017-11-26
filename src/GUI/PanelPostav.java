@@ -18,17 +18,20 @@ import logika.HerniPlan;
 import logika.Postava;
 import utils.Observer;
 
-
+/**
+ *
+ * @author Jan Laštůvka
+ */
 public class PanelPostav implements Observer{
     
     private HerniPlan plan;
     ListView<Object> list;
     ObservableList<Object> data;
     private TextArea centralText;
-    private Postava postava;
+    
 
     /*
-    * Konstruktor pro panel věcí v prostoru.
+    * Konstruktor pro panel postav v prostoru.
     */
     public PanelPostav(HerniPlan plan, TextArea text) {
        this.plan = plan;
@@ -39,13 +42,13 @@ public class PanelPostav implements Observer{
     }
 
     /*
-    * Metoda vytvoří list pro věci v prostoru.
+    * Metoda vytvoří list pro postavy v prostoru.
     */
     private void init() {
         list = new ListView<>();
         data = FXCollections.observableArrayList();
         list.setItems(data);
-        list.setPrefWidth(100);
+        list.setPrefWidth(155);
         
         list.setOnMouseClicked(new EventHandler<MouseEvent>() 
         {
@@ -69,7 +72,17 @@ public class PanelPostav implements Observer{
                        }
                        pomocna++;
                     }
-                 
+                    if(plan.getAktualniProstor().obsahujePostavu("Brock")){
+                    String vstupniPrikaz = "bojuj "+nazev;
+                    String odpovedHry = plan.getHra().zpracujPrikaz("bojuj "+nazev);
+           
+                    centralText.appendText("\n" + vstupniPrikaz + "\n");
+                    centralText.appendText("\n" + odpovedHry + "\n");
+
+                    plan.notifyObservers();    
+                        
+                    }
+                    else{
                     String vstupniPrikaz = "promluv "+nazev;
                     String odpovedHry = plan.getHra().zpracujPrikaz("promluv "+nazev);
            
@@ -78,6 +91,7 @@ public class PanelPostav implements Observer{
                     centralText.appendText("\n" + odpovedHry + "\n");
                
                     plan.notifyObservers();
+                    }
                     
                 }
             }
@@ -95,7 +109,7 @@ public class PanelPostav implements Observer{
     }
     
     /*
-    * Metoda aktualizuje list věcí v prostoru. Zobrazuje obrázky věcí, které jsou v prostoru.
+    * Metoda aktualizuje list postav v prostoru. Zobrazuje obrázky postav, které jsou v prostoru.
     */
     @Override 
     public void update() 
@@ -106,7 +120,7 @@ public class PanelPostav implements Observer{
         for (String x : seznam.keySet()) 
         {
         Postava pomocna = seznam.get(x);
-        ImageView obrazek = new ImageView(new Image(main.Main.class.getResourceAsStream("/zdroje/"+pomocna.getObrazek()), 100, 250, false, false));
+        ImageView obrazek = new ImageView(new Image(main.Main.class.getResourceAsStream("/zdroje/"+pomocna.getObrazek()), 120, 250, false, false));
         data.add(obrazek);
         }
     }

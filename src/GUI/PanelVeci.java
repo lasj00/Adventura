@@ -18,7 +18,10 @@ import logika.HerniPlan;
 import logika.Vec;
 import utils.Observer;
 
-
+/**
+ *
+ * @author Jan Laštůvka
+ */
 public class PanelVeci implements Observer{
     
     private HerniPlan plan;

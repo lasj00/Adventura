@@ -19,6 +19,10 @@ import logika.Vec;
 import utils.Observer;
 
 
+/**
+ *
+ * @author Jan Laštůvka
+ */
 public class PanelBatohu implements Observer{
     
     private HerniPlan plan;

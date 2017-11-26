@@ -16,7 +16,7 @@ import utils.Observer;
 
 /**
  *
- * @author honza
+ * @author Jan Laštůvka
  */
 public class Mapa extends AnchorPane implements Observer{
     
@@ -24,13 +24,17 @@ public class Mapa extends AnchorPane implements Observer{
     private IHra hra;
     private Circle tecka;
       
-    
+    /*
+    * Konstruktor pro mapu.
+    */
     public Mapa(IHra hra){
         this.hra = hra;
         hra.getHerniPlan().registerObserver(this);
         init();
     }
-    
+    /*
+    * Metoda vytvoří kolečko pro lokaci hráče.
+    */
     private void init(){
         ImageView obrazekImageView = new ImageView(new Image(Main.class.getResourceAsStream("/zdroje/mapa.png"),250,600,false,true));
         
@@ -40,13 +44,18 @@ public class Mapa extends AnchorPane implements Observer{
         update();
     }
     
+    /*
+    * Metoda vytvoří defaultní kolečko při nové hře.
+    */
     public void newGame(IHra novaHra){
         hra.getHerniPlan().removeObserver(this);
         hra = novaHra;
         hra.getHerniPlan().registerObserver(this);
         update();
     }
-    
+    /*
+    * Metoda pro zadávání pouřadnic kolečku.
+    */
     @Override
     public void update() {
         this.setTopAnchor(tecka, hra.getHerniPlan().getAktualniProstor().getPosTop());
